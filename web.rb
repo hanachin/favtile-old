@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sass'
 require 'twitter'
 
 Twitter.configure do |config|
@@ -6,6 +7,10 @@ Twitter.configure do |config|
   config.consumer_secret = "your consumer_secret"
   config.oauth_token = "your oauth_token"
   config.oauth_token_secret = "your oauth_token_secret"
+end
+
+get '/style.css' do
+  sass :style
 end
 
 get '/:name' do |name|
