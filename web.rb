@@ -13,7 +13,11 @@ get '/style.css' do
   sass :style
 end
 
+get '/' do
+  haml :index
+end
+
 get '/:name' do |name|
   @favs = Twitter.favorites(name).map {|t| t.text }
-  haml :index
+  haml :fav
 end
