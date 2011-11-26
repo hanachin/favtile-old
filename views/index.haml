@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=UTF-8' }
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => "css/style.css" }
+    %script{ :type => "text/javascript", :src => "js/jquery-1.7.min.js" }
+    %script{ :type => "text/javascript", :src => "js/coffee-script.js" }
+    %script{ :type => "text/javascript", :src => "http://platform.twitter.com/widgets.js" }
+    %script{ :type => "text/javascript", :src => "http://connect.facebook.net/ja_JP/all.js#xfbml=1", :id => "facebook-jssdk" }
+    %script{ :type => "text/coffeescript", :src => "main.coffee" }
+    %title Favotile
+  %body
+    #fb-root
+    .container
+      .header
+        .right_ab
+          %a{:href => "http://twitter.com/yasulab" } yasulab
+          %a{:href => "http://twitter.com/hanachin_" } hanachin_
+      .ib-top
+        %h1 Favotile
+        .fb-like.right_ab{"data-href" => "http://www.yasulab.net/misawagram/", "data-send" => "true", "data-width" => 450, "data-show-faces" => "false"}
+        %a{:href => "https://twitter.com/share", :class => "twitter-share-button", "data-count" => "horizontal",
+           "data-via" => "yasulab", "data-related" =>"hanachin_", "data-lang" => "ja" }
+          ツイート
+      .ib-main-wrapper
+        - @favs.each do |f|
+          %span= f
