@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'sinatra'
 require 'sass'
 require 'twitter'
@@ -18,6 +19,12 @@ get '/' do
 end
 
 get '/:name' do |name|
-  @favs = Twitter.favorites(name).map {|t| t.text }
+  @favs = []
+  begin
+    fav = Twitter.favorites(name).map {|t| t.text }
+    @favs = fav
+  rescue
+    @notice = "favの取得に失敗しました。"
+  end
   haml :fav
 end

@@ -1,2 +1,11 @@
-- @favs.each do |f|
-  .tile= f
+- if @notice
+  %label{:for => "username"} Twitterのアカウント名を入力してください
+  %br
+  %input{:id => "username"}
+  %button{:id => "fav"} ふぁぼたいる
+  %br
+  %span= @notice
+  %br
+- @favs.each_index do |i|
+  - f = @favs[i]
+  .tile{:class => "note#{i%4+1}"}= f
