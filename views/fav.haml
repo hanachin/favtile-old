@@ -1,9 +1,9 @@
+%label{:for => "username"} Twitterのアカウント名を入力してください
+%br
+%input{:id => "username"}
+%button{:id => "fav"} ふぁぼたいる
+%br
 - if @notice
-  %label{:for => "username"} Twitterのアカウント名を入力してください
-  %br
-  %input{:id => "username"}
-  %button{:id => "fav"} ふぁぼたいる
-  %br
   %span= @notice
   %br
 - @favs.each_index do |i|
