@@ -20,6 +20,7 @@ end
 
 get '/:name' do |name|
   @favs = []
+  @name = name
   begin
     fav = Twitter.favorites(name).map {|t| t.text }
     @favs = fav
