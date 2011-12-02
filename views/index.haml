@@ -1,7 +1,8 @@
 %label{:for => "username"} Twitterのアカウント名を入力してください
 %br
-%input{:id => "username"}
-%button{:id => "fav"} ふぁぼたいる
+%form
+  %input{:id => "username", :value => @name}
+  %input{:id => "fav", :type => "submit", :value => "favtile!"}
 %br
 - if @notice
   %span= @notice
