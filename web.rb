@@ -24,10 +24,23 @@ get '/:name' do |name|
   @favs = []
   @name = name
   begin
-    fav = Twitter.favorites(name).map {|t| t.text }
-    @favs = fav
+    favs = Twitter.favorites(name).map {|t| t.text }
+    @favs = favs
   rescue
     @notice = "favの取得に失敗しました。"
   end
   haml :fav
+end
+
+get '/:name/:page' do |name, page|
+  @favs = []
+  begin
+    favs = Twitter.favorites(name, {:page => page})
+    @favs = favs
+  rescue
+    @notice = "favの取得に失敗しました。"
+  end
+  
+  content_type :json
+  @favs.map {|x| x.attrs }.to_json
 end
