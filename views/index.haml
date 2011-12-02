@@ -2,3 +2,10 @@
 %br
 %input{:id => "username"}
 %button{:id => "fav"} ふぁぼたいる
+%br
+- if @notice
+  %span= @notice
+  %br
+- @favs.each_index do |i|
+  - f = @favs[i]
+  .tile{:class => "note#{i%4+1}"}= f

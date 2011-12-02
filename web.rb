@@ -16,20 +16,18 @@ get '/style.css' do
   sass :style
 end
 
-get '/' do
-  haml :index
-end
-
-get '/:name' do |name|
+get '/?:name?' do |name|
   @favs = []
   @name = name
-  begin
-    favs = Twitter.favorites(name).map {|t| t.text }
-    @favs = favs
-  rescue
-    @notice = "favの取得に失敗しました。"
+  if @name
+    begin
+      favs = Twitter.favorites(name).map {|t| t.text }
+      @favs = favs
+    rescue
+      @notice = "favの取得に失敗しました。"
+    end
   end
-  haml :fav
+  haml :index
 end
 
 get '/:name/:page' do |name, page|
