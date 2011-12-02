@@ -1,5 +1,6 @@
 $ ->
   $(".tile").tile().autolink()
+  $(".tile a").attr(target : "_blank")
   $(".tile").mouseenter ->
     $(this).fadeTo("fast", 0.8, => $(this).fadeTo("fast", 1))
 
@@ -18,3 +19,4 @@ $ ->
       for x in data
         $(".ib-main-wrapper").append($("<div></div>").attr(class: "note#{n++ % 4 + 1} tile").text(x.text))
       $(".tile").tile().autolink()
+      $(".tile").attr(target : "_blank")
