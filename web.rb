@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+require 'bundler/setup'
+
 require 'sinatra'
 require 'sass'
 require 'twitter'
