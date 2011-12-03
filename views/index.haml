@@ -9,4 +9,8 @@
   %br
 - @favs.each_index do |i|
   - f = @favs[i]
-  .tile{:class => "note#{i%4+1}"}= f
+  .tile{:class => "note#{i%4+1}"}
+    %img{:src => f.user["profile_image_url"]}
+    %br
+    = f.text
+    %br

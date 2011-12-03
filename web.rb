@@ -21,7 +21,7 @@ get '/?:name?' do |name|
   @name = name
   if @name
     begin
-      favs = Twitter.favorites(name).map {|t| t.text }
+      favs = Twitter.favorites(name)
       @favs = favs
     rescue
       @notice = "favの取得に失敗しました。"
