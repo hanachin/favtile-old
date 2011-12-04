@@ -10,7 +10,10 @@
 - @favs.each_index do |i|
   - f = @favs[i]
   .tile{:class => "note#{i%4+1}"}
-    %img{:src => f.user["profile_image_url"]}
+    %span{:class => "text"}= f.text
     %br
-    = f.text
-    %br
+    .space 
+    %span{:class => "screen_name"}
+      %img{:src => URI.encode(f.user["profile_image_url"])}
+      %br
+      %a{:href => f.user["screen_name"]}= "@#{f.user["screen_name"]}"
