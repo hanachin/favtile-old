@@ -5,11 +5,13 @@ require 'sinatra'
 require 'sass'
 require 'twitter'
 
-Twitter.configure do |config|
-  config.consumer_key = "your consumer_key"
-  config.consumer_secret = "your consumer_secret"
-  config.oauth_token = "your oauth_token"
-  config.oauth_token_secret = "your oauth_token_secret"
+config = YAML.load_file("config.yml")
+
+Twitter.configure do |c|
+  c.consumer_key = config["CONSUMER_KEY"]
+  c.consumer_secret = config["CONSUMER_SECRET"]
+  c.oauth_token = config["ACCESS_TOKEN"]
+  c.oauth_token_secret = config["ACCESS_TOKEN_SECRET"]
 end
 
 get '/style.css' do
@@ -38,7 +40,7 @@ get '/:name/:page' do |name, page|
   rescue
     @notice = "favの取得に失敗しました。"
   end
-  
+
   content_type :json
   @favs.map {|x| x.attrs }.to_json
 end
