@@ -4,6 +4,8 @@ $ ->
   $(".tile").mouseenter ->
     $(this).fadeTo("fast", 0.8, => $(this).fadeTo("fast", 1))
 
+  $("#loading").activity()
+
   $("#username").hint()
 
   $("#fav").click ->
@@ -16,7 +18,9 @@ $ ->
   page = 2 unless page?
   window["doInTheBottom"] = ->
     console.log "bottom"
+    $("#loading").fadeIn("slow")
     $.getJSON "/#{username}/#{page++}", (data) ->
+      $("#loading").fadeOut("slow")
       n = 0
       for x in data
         div = $("<div></div>").attr(class: "note#{n++ % 4 + 1} tile")
