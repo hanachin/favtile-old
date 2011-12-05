@@ -4,6 +4,8 @@ $ ->
   $(".tile").mouseenter ->
     $(this).fadeTo("fast", 0.8, => $(this).fadeTo("fast", 1))
 
+  $("#username").hint()
+
   $("#fav").click ->
     location.href = "/#{$('#username').val()}"
     false
