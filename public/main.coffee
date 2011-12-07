@@ -1,9 +1,6 @@
 $ ->
   $(".tile").tile().autolink()
   $(".tile a").attr(target : "_blank")
-  $(".tile").mouseenter ->
-    $(this).fadeTo("fast", 0.8, => $(this).fadeTo("fast", 1))
-
   $("#loading").activity()
 
   $("#username").hint()
