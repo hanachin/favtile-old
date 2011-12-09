@@ -28,7 +28,6 @@ get '/?:name?' do |name|
       if u.profile_use_background_image
         @bg_img = URI.encode(u.profile_background_image_url)
         @bg_repeat = if u.profile_background_tile then "repeat" else "none" end
-        end
       end
       @favs = favs
     rescue
