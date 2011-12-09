@@ -14,6 +14,31 @@ Twitter.configure do |c|
   c.oauth_token_secret = config["ACCESS_TOKEN_SECRET"]
 end
 
+def tweet_tag(f)
+  text = f.text
+  e = f.attrs["entities"]
+  e = e.inject([]) {|result, kv|
+    k = kv.first
+    v = kv.last
+    result + v.map{|o| o["type"] = k; o}
+  }.sort{|a,b|
+    a["indices"].first <=> b["indices"].first
+  }
+  if not e.empty?
+    tree = e.inject([{"indices" => [0,0]}]){|result,o|
+      prev = result.last
+      result << text[prev["indices"].last...o["indices"].first]
+      result.push o
+      result
+    }
+    tree.shift
+    tree.push text[tree.last["indices"].last..text.length]
+  else
+    tree = [text]
+  end
+  tree
+end
+
 get '/style.css' do
   sass :style
 end
