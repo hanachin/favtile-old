@@ -1,3 +1,11 @@
+- if @bg_img
+  :css
+    body {
+      background-image: url("#{@bg_img}");
+      background-attachment: fixed;
+      background-repeat: #{repeat};
+    }
+
 %form
   %input{:id => "username", :value => @name, :title => "Username"}
   %input{:id => "fav", :type => "submit", :value => "favtile"}
