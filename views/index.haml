@@ -16,9 +16,18 @@
 - @favs.each_index do |i|
   - f = @favs[i]
   .tile{:class => "note#{i%4+1}"}
-    %span{:class => "text"}= f.text
+    - tweet_tag(f).each do |t|
+      - if t.instance_of?(String)
+        %span= t
+      - else if t.instance_of?(Hash)
+        - if t["type"]["user_mentions"]
+          %a{:href => t["screen_name"]}= "@#{t["screen_name"]}"
+        - else if t["type"]["hashtags"]
+          %span= t["text"]
+        - else if t["type"]["urls"]
+          %a{:href => t["expanded_url"]}= "@#{t["display_url"]}"
     %br
-    .space 
+    .space
     %span{:class => "screen_name"}
       %img{:src => URI.encode(f.user["profile_image_url"])}
       %br
