@@ -17,7 +17,6 @@ end
 def tweet_tag(f)
   text = f.text
   e = f.attrs["entities"]
-  e = [] unless e
   e = e.inject([]) {|result, kv|
     k = kv.first
     v = kv.last
